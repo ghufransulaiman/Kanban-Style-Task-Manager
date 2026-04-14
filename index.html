@@ -67,6 +67,20 @@
       </div>
     </div>
 
-    <script src="taskmanager.js"></script>
+    <script src="taskmanager.js">
+      let tasks = [];
+      let currentColumn = "";
+      let editTaskId = null;
+
+      const taskCounter = document.getElementById("taskCounter");
+      const taskModal = document.getElementById("taskModal");
+      const taskTitle = document.getElementById("taskTitle");
+      const taskDescription = document.getElementById("taskDescription");
+      const taskPriority = document.getElementById("taskPriority");
+      const taskDueDate = document.getElementById("taskDueDate");
+      const saveTaskBtn = document.getElementById("saveTaskBtn");
+      const cancelTaskBtn = document.getElementById("cancelTaskBtn");
+      const addTaskButtons = document.querySelectorAll(".addTaskBtn"); 
+    </script>
 </body>
 </html>
