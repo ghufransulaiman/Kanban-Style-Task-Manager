@@ -9,7 +9,7 @@
 <body>
 
 
-<header>
+ <header>
   <h1>Kanban Task Board</h1>
   <span id="taskCounter">0 Tasks</span>
 
@@ -20,24 +20,53 @@
     <option value="medium">Medium</option>
     <option value="low">Low</option>
   </select>
-</header>
+ </header>
 
-<main>
-  <section id="todo">
-    <h2>To Do</h2>
-    <ul></ul>
-    <button class="addTaskBtn" data-column="todo">Add Task</button>
-  </section>
+  <main>
+    <section id="todo">
+      <h2>To Do</h2>
+      <ul></ul>
+      <button class="addTaskBtn" data-column="todo">Add Task</button>
+    </section>
 
-  <section id="inprogress">
-    <h2>In Progress</h2>
-    <ul></ul>
-    <button class="addTaskBtn" data-column="inprogress">Add Task</button>
-  </section>
+    <section id="inprogress">
+      <h2>In Progress</h2>
+      <ul></ul>
+      <button class="addTaskBtn" data-column="inprogress">Add Task</button>
+    </section>
 
-  <section id="done">
-    <h2>Done</h2>
-    <ul></ul>
-    <button class="addTaskBtn" data-column="done">Add Task</button>
-  </section>
-</main>
+    <section id="done">
+      <h2>Done</h2>
+      <ul></ul>
+      <button class="addTaskBtn" data-column="done">Add Task</button>
+    </section>
+  </main>
+
+  <div id="taskModal" class="hidden">
+      <div class="modal-content">
+        <h2>Add Task</h2>
+
+        <label for="taskTitle">Title:</label>
+        <input type="text" id="taskTitle">
+
+        <label for="taskDescription">Description:</label>
+        <textarea id="taskDescription"></textarea>
+
+        <label for="taskPriority">Priority:</label>
+        <select id="taskPriority">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+
+        <label for="taskDueDate">Due Date:</label>
+        <input type="date" id="taskDueDate">
+
+        <button id="saveTaskBtn">Save</button>
+        <button id="cancelTaskBtn">Cancel</button>
+      </div>
+    </div>
+
+    <script src="taskmanager.js"></script>
+</body>
+</html>
