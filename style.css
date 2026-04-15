@@ -96,3 +96,59 @@ section h2 {
   margin: 0 0 15px;
   min-height: 220px;
 }
+
+.task-card {
+  background: #f8fafc;
+  border-left: 6px solid #38bdf8;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.task-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.task-description {
+  margin: 0 0 8px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.task-due-date {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.task-card {
+  background: #f8fafc;
+  border-left: 6px solid #38bdf8;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.task-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.task-description {
+  margin: 0 0 8px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.task-due-date {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #64748b;
+}
