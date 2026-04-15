@@ -13,10 +13,10 @@
       const addTaskButtons = document.querySelectorAll(".addTaskBtn");
 
       function createTaskCard(taskObj) {
-        li.setAttribute("data-priority", taskObj.priority);
 
         const li = document.createElement("li");
         li.setAttribute("data-id", taskObj.id);
+        li.setAttribute("data-priority", taskObj.priority);
         li.classList.add("task-card");
 
         const title = document.createElement("h3");
