@@ -83,6 +83,8 @@
       const addTaskButtons = document.querySelectorAll(".addTaskBtn");
 
       function createTaskCard(taskObj) {
+        li.setAttribute("data-priority", taskObj.priority);
+
         const li = document.createElement("li");
         li.setAttribute("data-id", taskObj.id);
         li.classList.add("task-card");
@@ -255,6 +257,22 @@
       function updateTaskCounter() {
           taskCounter.textContent = tasks.length + " Tasks";
         }
+
+        const priorityFilter = document.getElementById("priorityFilter");
+
+        priorityFilter.addEventListener("change", function () {
+          const selectedPriority = priorityFilter.value;
+          const allCards = document.querySelectorAll(".task-card");
+
+          allCards.forEach(function (card) {
+            const cardPriority = card.getAttribute("data-priority");
+
+            const shouldHide =
+              selectedPriority !== "all" && cardPriority !== selectedPriority;
+
+            card.classList.toggle("is-hidden", shouldHide);
+          });
+        });
     </script>
 </body>
 </html>
