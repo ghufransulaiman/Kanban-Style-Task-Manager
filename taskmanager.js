@@ -73,6 +73,25 @@
         dueDate.textContent = "Due: " + taskObj.dueDate;
         li.appendChild(dueDate);
 
+        // New Feature 
+        if (taskObj.column === "todo") {
+          const moveButton = document.createElement("button");
+          moveButton.classList.add("move-btn");
+          moveButton.setAttribute("data-action", "move");
+          moveButton.setAttribute("data-id", taskObj.id);
+          moveButton.textContent = "Start";
+          li.appendChild(moveButton);
+        }
+
+        if (taskObj.column === "inprogress") {
+          const moveButton = document.createElement("button");
+          moveButton.classList.add("move-btn");
+          moveButton.setAttribute("data-action", "move");
+          moveButton.setAttribute("data-id", taskObj.id);
+          moveButton.textContent = "Finish";
+          li.appendChild(moveButton);
+        }
+
         const editButton = document.createElement("button");
           editButton.classList.add("edit-btn");
           editButton.setAttribute("data-action", "edit");
@@ -108,6 +127,9 @@
 
             if (action === "delete") {
               deleteTask(taskId);
+            }
+            if (action === "move") {
+              moveTask(taskId);
             }
           });
         });
@@ -185,6 +207,36 @@
           updateTaskCounter();
         }
       }
+
+      // New Feature
+      function moveTask(taskId) {
+        const task = tasks.find(function (item) {
+          return item.id === taskId;
+        });
+
+        if (!task) {
+          return;
+        }
+
+        if (task.column === "todo") {
+          task.column = "inprogress";
+        } else if (task.column === "inprogress") {
+          task.column = "done";
+        } else {
+          return;
+        }
+
+        const oldCard = document.querySelector('[data-id="' + taskId + '"]');
+        const newCard = createTaskCard(task);
+
+        if (oldCard) {
+          oldCard.remove();
+
+          const newColumn = document.getElementById(task.column).querySelector("ul");
+          newColumn.appendChild(newCard);
+        }
+      }
+
 
       function updateTaskCounter() {
           taskCounter.textContent = tasks.length + " Tasks";
