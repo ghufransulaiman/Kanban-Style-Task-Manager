@@ -92,6 +92,39 @@
         title.textContent = taskObj.title;
         li.appendChild(title);
 
+        title.addEventListener("dblclick", function () {
+          const input = document.createElement("input");
+          input.setAttribute("type", "text");
+          input.value = title.textContent;
+          input.classList.add("inline-edit-input");
+
+          li.replaceChild(input, title);
+          input.focus();
+
+          function saveInlineEdit() {
+            const newTitle = input.value.trim();
+
+            if (newTitle !== "") {
+              taskObj.title = newTitle;
+              title.textContent = newTitle;
+            }
+
+            if (li.contains(input)) {
+              li.replaceChild(title, input);
+            }
+          }
+
+          input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              saveInlineEdit();
+            }
+          });
+
+          input.addEventListener("blur", function () {
+            saveInlineEdit();
+          });
+        });
+
         const description = document.createElement("p");
         description.classList.add("task-description");
         description.textContent = taskObj.description;
