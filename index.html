@@ -155,6 +155,24 @@
           });
         }
       }
+
+      function editTask(taskId) {
+        const task = tasks.find(function (item) {
+          return item.id === taskId;
+        });
+
+        if (task) {
+          taskTitle.value = task.title;
+          taskDescription.value = task.description;
+          taskPriority.value = task.priority;
+          taskDueDate.value = task.dueDate;
+
+          currentColumn = task.column;
+          editTaskId = taskId;
+
+          taskModal.classList.remove("hidden");
+        }
+      }
     </script>
 </body>
 </html>
