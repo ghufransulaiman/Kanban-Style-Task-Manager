@@ -173,6 +173,33 @@
           taskModal.classList.remove("hidden");
         }
       }
+
+      function updateTask(taskId, updatedData) {
+        const task = tasks.find(function (item) {
+          return item.id === taskId;
+        });
+
+        if (task) {
+          task.title = updatedData.title;
+          task.description = updatedData.description;
+          task.priority = updatedData.priority;
+          task.dueDate = updatedData.dueDate;
+          task.column = updatedData.column;
+
+          const oldCard = document.querySelector('[data-id="' + taskId + '"]');
+          const newCard = createTaskCard(task);
+
+          if (oldCard) {
+            const oldColumn = oldCard.parentElement;
+            oldCard.remove();
+
+            const newColumn = document.getElementById(task.column).querySelector("ul");
+            newColumn.appendChild(newCard);
+          }
+
+          updateTaskCounter();
+        }
+      }
     </script>
 </body>
 </html>
