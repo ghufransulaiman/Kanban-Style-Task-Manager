@@ -76,12 +76,14 @@
         const editButton = document.createElement("button");
           editButton.classList.add("edit-btn");
           editButton.setAttribute("data-action", "edit");
+          editButton.setAttribute("data-id", taskObj.id);
           editButton.textContent = "Edit";
           li.appendChild(editButton);
 
           const deleteButton = document.createElement("button");
           deleteButton.classList.add("delete-btn");
           deleteButton.setAttribute("data-action", "delete");
+          deleteButton.setAttribute("data-id", taskObj.id);
           deleteButton.textContent = "Delete";
           li.appendChild(deleteButton);
         return li;
@@ -92,23 +94,26 @@
         taskLists.forEach(function (taskList) {
           taskList.addEventListener("click", function (event) {
             const action = event.target.getAttribute("data-action");
+            const idStr = event.target.getAttribute("data-id");
 
-            if (!action) {
+            if (!action || !idStr) {
               return;
             }
 
             const card = event.target.closest("li");
             const taskId = Number(card.getAttribute("data-id"));
 
-            if (action === "edit") {
-              editTask(taskId);
-            }
+            const taskId = parseInt(idStr, 10);
 
-            if (action === "delete") {
-              deleteTask(taskId);
-            }
+              if (action === "edit") {
+                editTask(taskId);
+              }
+
+              if (action === "delete") {
+                deleteTask(taskId);
+              }
+            });
           });
-        });
 
       function addTask(columnId, taskObj) {
         tasks.push(taskObj);
