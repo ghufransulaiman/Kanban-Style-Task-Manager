@@ -80,7 +80,52 @@
       const taskDueDate = document.getElementById("taskDueDate");
       const saveTaskBtn = document.getElementById("saveTaskBtn");
       const cancelTaskBtn = document.getElementById("cancelTaskBtn");
-      const addTaskButtons = document.querySelectorAll(".addTaskBtn"); 
+      const addTaskButtons = document.querySelectorAll(".addTaskBtn");
+
+      function createTaskCard(taskObj) {
+        const li = document.createElement("li");
+        li.setAttribute("data-id", taskObj.id);
+        li.classList.add("task-card");
+
+        const title = document.createElement("h3");
+        title.classList.add("task-title");
+        title.textContent = taskObj.title;
+        li.appendChild(title);
+
+        const description = document.createElement("p");
+        description.classList.add("task-description");
+        description.textContent = taskObj.description;
+        li.appendChild(description);
+
+        const priority = document.createElement("span");
+        priority.classList.add("priority-badge");
+        priority.classList.add(taskObj.priority);
+        priority.textContent = taskObj.priority;
+        li.appendChild(priority);
+
+        const dueDate = document.createElement("p");
+        dueDate.classList.add("task-due-date");
+        dueDate.textContent = "Due: " + taskObj.dueDate;
+        li.appendChild(dueDate);
+
+        const editButton = document.createElement("button");
+        editButton.classList.add("edit-btn");
+        editButton.textContent = "Edit";
+        editButton.addEventListener("click", function () {
+          editTask(taskObj.id);
+        });
+        li.appendChild(editButton);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-btn");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", function () {
+          deleteTask(taskObj.id);
+        });
+        li.appendChild(deleteButton);
+
+        return li;
+      }
     </script>
 </body>
 </html>
