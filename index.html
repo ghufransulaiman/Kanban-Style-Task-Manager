@@ -126,6 +126,17 @@
 
         return li;
       }
+
+      function addTask(columnId, taskObj) {
+        tasks.push(taskObj);
+
+        const column = document.getElementById(columnId);
+        const taskList = column.querySelector("ul");
+        const taskCard = createTaskCard(taskObj);
+
+        taskList.appendChild(taskCard);
+        updateTaskCounter();
+      }
     </script>
 </body>
 </html>
