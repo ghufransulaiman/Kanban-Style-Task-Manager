@@ -137,6 +137,24 @@
         taskList.appendChild(taskCard);
         updateTaskCounter();
       }
+
+      function deleteTask(taskId) {
+        const card = document.querySelector('[data-id="' + taskId + '"]');
+
+        if (card) {
+          card.classList.add("fade-out");
+
+          card.addEventListener("animationend", function () {
+            card.remove();
+
+            tasks = tasks.filter(function (task) {
+              return task.id !== taskId;
+            });
+
+            updateTaskCounter();
+          });
+        }
+      }
     </script>
 </body>
 </html>
