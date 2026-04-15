@@ -101,7 +101,6 @@
             }
 
             const card = event.target.closest("li");
-            const taskId = Number(card.getAttribute("data-id"));
 
             const taskId = parseInt(idStr, 10);
 
