@@ -23,3 +23,46 @@
     transform: translateY(10px);
   }
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6fb;
+  color: #222;
+}
+
+header {
+  background: #1e293b;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 32px;
+}
+
+#taskCounter {
+  display: inline-block;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+header label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: bold;
+}
+
+header select {
+  width: 220px;
+  max-width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+}
