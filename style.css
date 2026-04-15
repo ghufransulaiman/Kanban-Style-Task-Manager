@@ -293,3 +293,9 @@ button:hover {
   margin-bottom: 8px;
   font-size: 16px;
 }
+
+@media (min-width: 768px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
