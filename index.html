@@ -39,6 +39,7 @@
       <h2>Done</h2>
       <ul class="taskList"></ul>
       <button class="addTaskBtn" data-column="done">Add Task</button>
+      <button id="clearDoneBtn">Clear All</button>
     </section>
   </main>
 
@@ -273,6 +274,31 @@
             card.classList.toggle("is-hidden", shouldHide);
           });
         });
+
+        const clearDoneBtn = document.getElementById("clearDoneBtn");
+
+          clearDoneBtn.addEventListener("click", function () {
+            const doneList = document.querySelector("#done ul");
+            const doneCards = doneList.querySelectorAll(".task-card");
+
+            doneCards.forEach(function (card, index) {
+              setTimeout(function () {
+                card.classList.add("fade-out");
+
+                card.addEventListener("animationend", function () {
+                  const taskId = Number(card.getAttribute("data-id"));
+
+                  card.remove();
+
+                  tasks = tasks.filter(function (task) {
+                    return task.id !== taskId;
+                  });
+
+                  updateTaskCounter();
+                }, { once: true });
+              }, index * 100);
+            });
+          });
     </script>
 </body>
 </html>
