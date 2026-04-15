@@ -100,19 +100,17 @@
               return;
             }
 
-            const card = event.target.closest("li");
-
             const taskId = parseInt(idStr, 10);
 
-              if (action === "edit") {
-                editTask(taskId);
-              }
+            if (action === "edit") {
+              editTask(taskId);
+            }
 
-              if (action === "delete") {
-                deleteTask(taskId);
-              }
-            });
+            if (action === "delete") {
+              deleteTask(taskId);
+            }
           });
+        });
 
       function addTask(columnId, taskObj) {
         tasks.push(taskObj);
@@ -231,5 +229,57 @@
                 }, { once: true });
               }, index * 100);
             });
+          });
+
+          addTaskButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+              currentColumn = button.getAttribute("data-column");
+              editTaskId = null;
+
+              taskTitle.value = "";
+              taskDescription.value = "";
+              taskPriority.value = "high";
+              taskDueDate.value = "";
+
+              taskModal.classList.remove("hidden");
+            });
+          });
+
+          cancelTaskBtn.addEventListener("click", function () {
+            taskModal.classList.add("hidden");
+          });
+
+          saveTaskBtn.addEventListener("click", function () {
+            const titleValue = taskTitle.value.trim();
+            const descriptionValue = taskDescription.value.trim();
+            const priorityValue = taskPriority.value;
+            const dueDateValue = taskDueDate.value;
+
+            if (titleValue === "") {
+              return;
+            }
+
+            if (editTaskId !== null) {
+              updateTask(editTaskId, {
+                title: titleValue,
+                description: descriptionValue,
+                priority: priorityValue,
+                dueDate: dueDateValue,
+                column: currentColumn
+              });
+            } else {
+              const taskObj = {
+                id: Date.now(),
+                title: titleValue,
+                description: descriptionValue,
+                priority: priorityValue,
+                dueDate: dueDateValue,
+                column: currentColumn
+              };
+
+              addTask(currentColumn, taskObj);
+            }
+
+            taskModal.classList.add("hidden");
           });
     
