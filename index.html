@@ -109,23 +109,41 @@
         li.appendChild(dueDate);
 
         const editButton = document.createElement("button");
-        editButton.classList.add("edit-btn");
-        editButton.textContent = "Edit";
-        editButton.addEventListener("click", function () {
-          editTask(taskObj.id);
-        });
-        li.appendChild(editButton);
+          editButton.classList.add("edit-btn");
+          editButton.setAttribute("data-action", "edit");
+          editButton.textContent = "Edit";
+          li.appendChild(editButton);
 
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("delete-btn");
-        deleteButton.textContent = "Delete";
-        deleteButton.addEventListener("click", function () {
-          deleteTask(taskObj.id);
-        });
-        li.appendChild(deleteButton);
-
+          const deleteButton = document.createElement("button");
+          deleteButton.classList.add("delete-btn");
+          deleteButton.setAttribute("data-action", "delete");
+          deleteButton.textContent = "Delete";
+          li.appendChild(deleteButton);
         return li;
       }
+
+      const taskLists = document.querySelectorAll("section ul");
+
+        taskLists.forEach(function (taskList) {
+          taskList.addEventListener("click", function (event) {
+            const action = event.target.getAttribute("data-action");
+
+            if (!action) {
+              return;
+            }
+
+            const card = event.target.closest("li");
+            const taskId = Number(card.getAttribute("data-id"));
+
+            if (action === "edit") {
+              editTask(taskId);
+            }
+
+            if (action === "delete") {
+              deleteTask(taskId);
+            }
+          });
+        });
 
       function addTask(columnId, taskObj) {
         tasks.push(taskObj);
